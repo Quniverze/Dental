@@ -2,295 +2,1260 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Quniverze — Founder Command Center</title>
-  <meta name="description" content="Calm, editorial, operational founder command center for Quniverze.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AURA Dental Studio | Advanced Cosmetic Dentistry & Oral Surgery</title>
+  <meta name="description" content="Experience pain-free luxury dentistry at AURA Dental Studio. Specializing in bespoke porcelain veneers, Invisalign, 3D guided implants, and same-day smile transformations.">
 
-  <!-- Preconnect & Google Fonts: Inter -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-  <div class="app-shell" id="app-shell">
-    
-    <!-- DESKTOP LEFT SIDEBAR -->
-    <aside class="sidebar" id="app-sidebar" aria-label="Primary navigation">
-      <div class="sidebar-top">
-        <div class="brand-block">
-          <div class="brand-title">QUNIVERZE</div>
-          <div class="brand-subtitle">Founder Console</div>
-        </div>
+<body class="dental-theme">
 
-        <nav class="sidebar-nav" aria-label="Main Navigation">
-          <button type="button" class="nav-link is-active" data-view="today" id="nav-today">
-            <span class="nav-link-label">Today</span>
-            <span class="nav-count" id="today-badge-count">4</span>
-          </button>
-          <button type="button" class="nav-link" data-view="ventures" id="nav-ventures">
-            <span class="nav-link-label">Ventures</span>
-            <span class="nav-count-subtle" id="ventures-badge-count">2</span>
-          </button>
-          <button type="button" class="nav-link" data-view="contacts" id="nav-contacts">
-            <span class="nav-link-label">Contacts</span>
-            <span class="nav-count-subtle" id="contacts-badge-count">3</span>
-          </button>
-        </nav>
+  <!-- TOP SCROLL PROGRESS BAR -->
+  <div id="scroll-progress" class="scroll-progress-bar" aria-hidden="true"></div>
+
+  <!-- AMBIENT GLOW BACKDROPS -->
+  <div class="ambient-glow ambient-glow--1" aria-hidden="true"></div>
+  <div class="ambient-glow ambient-glow--2" aria-hidden="true"></div>
+  <div class="ambient-glow ambient-glow--3" aria-hidden="true"></div>
+
+  <!-- EMERGENCY & TOP AVAILABILITY BANNER -->
+  <div class="top-announcement" role="region" aria-label="Clinic Live Status">
+    <div class="container announcement-inner">
+      <div class="status-badge-live">
+        <span class="live-dot" aria-hidden="true"></span>
+        <span class="status-text"><strong>Live Availability:</strong> Next emergency &amp; aesthetic slot open today at <strong>3:45 PM</strong></span>
       </div>
-
-      <div class="sidebar-bottom">
-        <button type="button" class="sidebar-quick-capture" id="sidebar-quick-capture-btn" aria-label="Quick capture (Command or Control plus K)">
-          <span class="capture-btn-label">+ Capture</span>
-          <kbd class="kbd-pill">⌘K</kbd>
-        </button>
-
-        <div class="sidebar-operational-status" id="sidebar-status-panel">
-          <div class="status-summary-label">CONSOLE STATUS</div>
-          <div class="status-summary-val" id="sidebar-summary-text">4 open · 1 needs call</div>
-        </div>
-
-        <button type="button" class="shortcuts-helper-trigger" id="shortcuts-trigger-btn" aria-label="Open keyboard shortcuts">
-          <span>Shortcuts</span>
-          <kbd class="kbd-pill">?</kbd>
+      <div class="announcement-actions">
+        <span class="phone-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> Priority Desk: +1 (800) 428-7233</span>
+        <span class="bullet-sep" aria-hidden="true">&bull;</span>
+        <button type="button" class="motion-toggle-btn" id="motion-toggle" aria-label="Toggle motion effects">
+          <span class="motion-icon" aria-hidden="true">&#9889;</span> Motion: <strong id="motion-status-text">Active</strong>
         </button>
       </div>
-    </aside>
+    </div>
+  </div>
 
-    <!-- MAIN OPERATING STAGE -->
-    <main class="main-stage" id="main-stage">
+  <!-- FLOATING NAVIGATION HEADER -->
+  <header class="studio-header" id="studio-header">
+    <div class="container header-container">
       
-      <!-- VIEW: TODAY (Master-Detail) -->
-      <section class="view-panel is-active" id="view-today" aria-label="Today Command Feed">
-        <div class="master-detail-layout">
-          
-          <!-- LEFT COLUMN: TODAY FEED -->
-          <div class="feed-column" id="feed-column" tabindex="-1">
-            <header class="feed-header">
-              <div class="feed-header-title-row">
-                <h1 class="page-title">Today</h1>
-                <span class="feed-date" id="current-date-label">Today</span>
-              </div>
-              <div class="feed-subhead-row">
-                <span class="feed-meta-status" id="feed-status-line">4 active items · 1 awaiting response</span>
-                <button type="button" class="feed-inline-capture-btn" id="feed-capture-trigger">+ New Item</button>
-              </div>
-            </header>
-
-            <!-- Continuous vertical feed list -->
-            <div class="feed-list" id="feed-list" role="list" aria-label="Action items feed">
-              <!-- Dynamically populated rows with section labels -->
-            </div>
-          </div>
-
-          <!-- RIGHT COLUMN: SELECTED ITEM DETAIL (Desktop) -->
-          <aside class="detail-column" id="detail-column" aria-label="Selected item details">
-            <div class="detail-container" id="detail-pane-content">
-              <!-- Dynamically populated master-detail pane -->
-            </div>
-          </aside>
-
+      <!-- Brand Logo -->
+      <a href="#hero" class="studio-brand" aria-label="AURA Dental Studio Home">
+        <div class="brand-symbol">
+          <svg class="tooth-glyph" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+            <path d="M20 4C13.5 4 10 8.5 10 14C10 18.5 12 24 14 30C15 33 17 36 18.5 36C19.5 36 19.8 32 20 27C20.2 32 20.5 36 21.5 36C23 36 25 33 26 30C28 24 30 18.5 30 14C30 8.5 26.5 4 20 4Z" stroke="url(#brandGrad)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M15 13C16.5 15.5 23.5 15.5 25 13" stroke="url(#brandGrad)" stroke-width="2" stroke-linecap="round"/>
+            <defs>
+              <linearGradient id="brandGrad" x1="10" y1="4" x2="30" y2="36" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#2DD4BF"/>
+                <stop offset="0.5" stop-color="#06B6D4"/>
+                <stop offset="1" stop-color="#C5A880"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <span class="sparkle-point" aria-hidden="true"></span>
         </div>
-      </section>
-
-      <!-- VIEW: VENTURES -->
-      <section class="view-panel" id="view-ventures" aria-label="Ventures Overview" hidden>
-        <div class="ventures-layout">
-          <header class="view-header">
-            <h1 class="page-title">Ventures</h1>
-            <p class="view-description">Operational portfolios, focus streams, and active experiments across your ventures.</p>
-          </header>
-
-          <div class="ventures-grid" id="ventures-container">
-            <!-- Dynamically populated ventures -->
-          </div>
+        <div class="brand-titles">
+          <span class="brand-name">AURA</span>
+          <span class="brand-tagline">DENTAL ATELIER &bull; MUMBAI &bull; BEVERLY HILLS</span>
         </div>
-      </section>
+      </a>
 
-      <!-- VIEW: CONTACTS -->
-      <section class="view-panel" id="view-contacts" aria-label="Founder Relationships and Contacts" hidden>
-        <div class="contacts-layout">
-          <header class="view-header">
-            <div class="view-header-row">
-              <div>
-                <h1 class="page-title">Contacts</h1>
-                <p class="view-description">Direct relationship pipeline, communications quiet age, and linked open actions.</p>
-              </div>
-              <button type="button" class="btn-editorial" id="add-contact-btn">+ Add Contact</button>
-            </div>
-          </header>
+      <!-- Desktop Nav Links -->
+      <nav class="studio-nav" id="studio-nav" aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="#treatments" class="nav-item">Treatments</a></li>
+          <li><a href="#transformations" class="nav-item">Smile Makeovers</a></li>
+          <li><a href="#technology" class="nav-item">Painless Tech</a></li>
+          <li><a href="#specialists" class="nav-item">Specialists</a></li>
+          <li><a href="#testimonials" class="nav-item">Patient Stories</a></li>
+          <li><a href="#faq" class="nav-item">FAQ</a></li>
+        </ul>
+      </nav>
 
-          <div class="contacts-master-detail">
-            <div class="contacts-list" id="contacts-list" role="list">
-              <!-- Dynamically populated contacts list -->
-            </div>
-            <div class="contacts-detail-pane" id="contacts-detail-pane">
-              <!-- Selected contact detail -->
-            </div>
-          </div>
-        </div>
-      </section>
-
-    </main>
-
-    <!-- MOBILE BOTTOM NAVIGATION -->
-    <nav class="mobile-bottom-bar" id="mobile-bottom-bar" aria-label="Mobile Navigation">
-      <button type="button" class="mobile-nav-btn is-active" data-view="today" id="mob-nav-today">
-        <span class="mob-btn-title">Today</span>
-        <span class="mob-btn-dot" id="mob-today-dot"></span>
-      </button>
-      <button type="button" class="mobile-nav-btn" data-view="ventures" id="mob-nav-ventures">
-        <span class="mob-btn-title">Ventures</span>
-      </button>
-      <button type="button" class="mobile-nav-btn" data-view="contacts" id="mob-nav-contacts">
-        <span class="mob-btn-title">Contacts</span>
-      </button>
-    </nav>
-
-    <!-- MOBILE FLOATING ACTION BUTTON -->
-    <button type="button" class="mobile-fab" id="mobile-fab" aria-label="Quick capture item">
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-        <path d="M10 4V16M4 10H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-      </svg>
-    </button>
-
-    <!-- MOBILE FULL-SCREEN DETAIL VIEW -->
-    <section class="mobile-fullscreen-detail" id="mobile-fullscreen-detail" aria-label="Item details view" hidden>
-      <header class="mobile-detail-header">
-        <button type="button" class="mobile-back-btn" id="mobile-detail-back-btn" aria-label="Back to feed">
-          ← Feed
+      <!-- Action Button -->
+      <div class="header-cta-group">
+        <a href="#booking" class="btn btn--shimmer btn--nav">
+          <span class="btn-text">Reserve Consultation</span>
+          <span class="btn-arrow" aria-hidden="true">&rarr;</span>
+        </a>
+        <button type="button" class="mobile-menu-btn" id="mobile-menu-btn" aria-expanded="false" aria-controls="studio-nav" aria-label="Open navigation menu">
+          <span class="menu-bar"></span>
+          <span class="menu-bar"></span>
+          <span class="menu-bar"></span>
         </button>
-        <span class="mobile-detail-title-preview" id="mobile-detail-header-preview">Details</span>
-        <div class="mobile-detail-quick-actions" id="mobile-detail-header-actions">
-          <!-- Star and Complete quick buttons -->
+      </div>
+
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- HERO SECTION WITH INTERACTIVE 3D TOOTH CANVAS -->
+    <section class="hero-section" id="hero" aria-labelledby="hero-title">
+      <div class="container hero-layout">
+        
+        <!-- Left: Kinetic Hero Narrative -->
+        <div class="hero-content">
+          <div class="hero-badge animate-fade-in">
+            <span class="badge-sparkle">&#10024;</span>
+            <span>NEXT-GENERATION PAINLESS AESTHETIC DENTISTRY</span>
+          </div>
+
+          <h1 class="hero-headline" id="hero-title">
+            Architecting <span class="gradient-text gradient-shimmer">Radiant Smiles</span> with Surgical Precision &amp; Absolute Serenity.
+          </h1>
+
+          <p class="hero-description">
+            Experience bespoke smile couture powered by AI-guided 3D scanning, micro-thin porcelain veneers, and painless laser therapy. We redefine dentistry into a restorative luxury spa ritual.
+          </p>
+
+          <div class="hero-cta-strip">
+            <a href="#booking" class="btn btn--primary btn--lg btn--pulse">
+              <span>Book Priority Consultation</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#transformations" class="btn btn--glass btn--lg">
+              <span class="play-pulse-icon" aria-hidden="true">&#9658;</span>
+              <span>Explore Smile Gallery</span>
+            </a>
+          </div>
+
+          <!-- Social Proof Badges -->
+          <div class="hero-proof-bar">
+            <div class="proof-avatars" aria-hidden="true">
+              <span class="avatar-circle">SJ</span>
+              <span class="avatar-circle">MR</span>
+              <span class="avatar-circle">EL</span>
+              <span class="avatar-circle avatar-circle--plus">+2k</span>
+            </div>
+            <div class="proof-copy">
+              <div class="stars-row" aria-label="5 star rating">
+                &#9733;&#9733;&#9733;&#9733;&#9733; <strong class="rating-num">4.99/5</strong>
+              </div>
+              <span class="proof-caption">From 2,800+ Verified Patient Smile Transformations</span>
+            </div>
+          </div>
         </div>
-      </header>
-      <div class="mobile-detail-scroll-body" id="mobile-detail-scroll-body">
-        <!-- Rendered detail contents on mobile -->
+
+        <!-- Right: 3D Interactive Luxury Dental Showcase -->
+        <div class="hero-visual-wrapper">
+          <div class="hero-showcase-card" id="hero-showcase" role="region" aria-label="Interactive Dental Aesthetic Showcase">
+            
+            <!-- Perspective Ambient Glow -->
+            <div class="showcase-glare" id="showcase-glare" aria-hidden="true"></div>
+
+            <!-- View Switcher Pills -->
+            <div class="hero-toggle-bar" role="tablist" aria-label="Switch between aesthetic smile and 3D anatomy view">
+              <button type="button" class="hero-mode-btn is-active" data-hero-mode="smile" role="tab" aria-selected="true">
+                <span class="mode-icon">&#10024;</span> Radiant Patient Smile
+              </button>
+              <button type="button" class="hero-mode-btn" data-hero-mode="anatomy" role="tab" aria-selected="false">
+                <span class="mode-icon">&#128300;</span> 3D Tooth Anatomy
+              </button>
+            </div>
+
+            <!-- Main Visual Layers Container -->
+            <div class="showcase-media-stage">
+              
+              <!-- Layer 1: Radiant Real Human Smile (Default Active) -->
+              <div class="showcase-layer showcase-layer--smile is-active" id="layer-smile">
+                <img src="assets/hero_smile.jpg" alt="Real Indian patient portrait with radiant pearlescent smile and perfectly aligned natural white teeth" class="showcase-img" fetchpriority="high">
+                
+                <!-- Radiant Shimmer Sweep -->
+                <div class="smile-shimmer-sweep" aria-hidden="true"></div>
+
+                <!-- Hotspot 1: Upper Central Incisors -->
+                <div class="hotspot hotspot--smile-veneers" style="top: 50%; left: 52%;">
+                  <button type="button" class="hotspot-trigger" aria-label="Inspect Bespoke Porcelain Veneers">
+                    <span class="hotspot-core"></span>
+                    <span class="hotspot-ring"></span>
+                  </button>
+                  <div class="hotspot-card" role="tooltip">
+                    <div class="hotspot-card__tag">AESTHETIC VENEERS</div>
+                    <div class="hotspot-card__title">0.2mm E-Max&reg; Porcelain</div>
+                    <div class="hotspot-card__desc">Layered with natural optical translucency, micro-texture, and golden ratio symmetry.</div>
+                  </div>
+                </div>
+
+                <!-- Hotspot 2: Smile Line & Symmetry -->
+                <div class="hotspot hotspot--smile-arch" style="top: 58%; left: 51%;">
+                  <button type="button" class="hotspot-trigger" aria-label="Inspect Golden Ratio Arch Line">
+                    <span class="hotspot-core"></span>
+                    <span class="hotspot-ring"></span>
+                  </button>
+                  <div class="hotspot-card" role="tooltip">
+                    <div class="hotspot-card__tag">ARCH HARMONY</div>
+                    <div class="hotspot-card__title">Dynamic Lip Curvature</div>
+                    <div class="hotspot-card__desc">Incisal edges contoured to follow the natural curve of the lower lip for youthful vitality.</div>
+                  </div>
+                </div>
+
+                <span class="showcase-badge showcase-badge--smile">AURA PATIENT NO. 14,892 &bull; BESPOKE SMILE ARCH (MUMBAI ATELIER)</span>
+              </div>
+
+              <!-- Layer 2: Anatomical Human Tooth Precision -->
+              <div class="showcase-layer showcase-layer--anatomy" id="layer-anatomy">
+                <img src="assets/human_tooth.jpg" alt="Photorealistic anatomical 3D render of a real human tooth with solid ivory enamel and root" class="showcase-img">
+                
+                <!-- Hotspot 1: Enamel Crown -->
+                <div class="hotspot hotspot--enamel" style="top: 22%; left: 52%;">
+                  <button type="button" class="hotspot-trigger" aria-label="Inspect Micro-Thin Ceramic Enamel Layer">
+                    <span class="hotspot-core"></span>
+                    <span class="hotspot-ring"></span>
+                  </button>
+                  <div class="hotspot-card" role="tooltip">
+                    <div class="hotspot-card__tag">ENAMEL ANATOMY</div>
+                    <div class="hotspot-card__title">Natural Enamel Micro-Grooves</div>
+                    <div class="hotspot-card__desc">Individual mamelons and developmental lobes replicating natural human dentition.</div>
+                  </div>
+                </div>
+
+                <!-- Hotspot 2: Anatomical Root -->
+                <div class="hotspot hotspot--implant" style="top: 72%; left: 50%;">
+                  <button type="button" class="hotspot-trigger" aria-label="Inspect Bio-Integrated Titanium Implant">
+                    <span class="hotspot-core"></span>
+                    <span class="hotspot-ring"></span>
+                  </button>
+                  <div class="hotspot-card" role="tooltip">
+                    <div class="hotspot-card__tag">GUIDED IMPLANT</div>
+                    <div class="hotspot-card__title">Laser-Fused Titanium Core</div>
+                    <div class="hotspot-card__desc">Robotic 3D placement into healthy alveolar bone with 99.8% osseointegration.</div>
+                  </div>
+                </div>
+
+                <span class="showcase-badge showcase-badge--anatomy">ANATOMICAL SPEC &bull; CENTRAL INCISOR</span>
+              </div>
+
+            </div>
+
+            <!-- Floating Orbital Metric Pills (True 3D Parallax Depth) -->
+            <div class="floating-pill floating-pill--1 floating-motion">
+              <div class="pill-icon">&#9889;</div>
+              <div class="pill-info">
+                <span class="pill-label">PAINLESS GUARANTEE</span>
+                <strong class="pill-value">100% GentleWave Sedation</strong>
+              </div>
+            </div>
+
+            <div class="floating-pill floating-pill--2 floating-motion-delayed">
+              <div class="pill-icon">&#128336;</div>
+              <div class="pill-info">
+                <span class="pill-label">SAME-DAY CEREC&reg;</span>
+                <strong class="pill-value">Crowns in 60 Minutes</strong>
+              </div>
+            </div>
+
+            <!-- Interactive Cursor Hint -->
+            <div class="canvas-drag-hint">
+              <span class="hint-icon">&#10022;</span> Move cursor to explore in 3D &bull; Click pins for dental specs
+            </div>
+
+          </div>
+        </div>
+
       </div>
     </section>
 
-    <!-- QUICK CAPTURE MODAL -->
-    <dialog class="quick-capture-dialog" id="quick-capture-dialog" aria-labelledby="capture-heading">
-      <div class="capture-inner">
-        <div class="capture-header">
-          <label for="quick-capture-input" class="capture-label" id="capture-heading">What needs to happen?</label>
-          <button type="button" class="modal-close-btn" id="quick-capture-close-btn" aria-label="Close modal">✕</button>
-        </div>
-        <div class="capture-input-wrap">
-          <input 
-            type="text" 
-            id="quick-capture-input" 
-            class="capture-input" 
-            placeholder="e.g., Review contract terms with logistics partner" 
-            autocomplete="off" 
-            spellcheck="false"
-          />
-        </div>
-        <div class="capture-footer">
-          <div class="capture-meta-defaults">
-            <span class="meta-tag">Type: Idea</span>
-            <span class="meta-sep">·</span>
-            <span class="meta-tag">Venture: Unassigned</span>
-            <span class="meta-sep">·</span>
-            <span class="meta-tag">Assignee: You</span>
+    <!-- LIVE METRICS TICKER STRIP -->
+    <section class="metrics-ticker-section" aria-label="Key Clinic Achievements">
+      <div class="container ticker-container">
+        
+        <div class="ticker-card reveal-on-scroll">
+          <div class="ticker-num-group">
+            <span class="ticker-val counter-value" data-target="15200">0</span>
+            <span class="ticker-plus">+</span>
           </div>
-          <div class="capture-shortcuts-hint">
-            <kbd class="kbd-pill">↵ Enter</kbd> to create &nbsp; <kbd class="kbd-pill">Esc</kbd> to dismiss
+          <span class="ticker-label">Smiles Re-Architected</span>
+          <p class="ticker-sub">Over 15,000 custom veneer &amp; aligner treatments executed flawlessly.</p>
+        </div>
+
+        <div class="ticker-card reveal-on-scroll">
+          <div class="ticker-num-group">
+            <span class="ticker-val counter-value" data-target="99.8" data-decimal="1">0</span>
+            <span class="ticker-plus">%</span>
           </div>
+          <span class="ticker-label">Patient Comfort Score</span>
+          <p class="ticker-sub">Zero-pain laser techniques and bespoke comfort suite amenities.</p>
+        </div>
+
+        <div class="ticker-card reveal-on-scroll">
+          <div class="ticker-num-group">
+            <span class="ticker-val counter-value" data-target="24">0</span>
+            <span class="ticker-plus">K</span>
+          </div>
+          <span class="ticker-label">Hours Same-Day Makeover</span>
+          <p class="ticker-sub">CAD/CAM 3D printing delivers permanent crowns on your first visit.</p>
+        </div>
+
+        <div class="ticker-card reveal-on-scroll">
+          <div class="ticker-num-group">
+            <span class="ticker-val counter-value" data-target="18">0</span>
+            <span class="ticker-plus">Awards</span>
+          </div>
+          <span class="ticker-label">Excellence in Cosmetic Dentistry</span>
+          <p class="ticker-sub">Recognized by the American Academy of Cosmetic Dentistry (AACD).</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- INTERACTIVE BEFORE & AFTER SMILE MAKEOVER SLIDER -->
+    <section class="section transformation-section" id="transformations" aria-labelledby="trans-title">
+      <div class="container">
+        
+        <header class="section-heading text-center reveal-on-scroll">
+          <div class="sub-kicker">&#128065; REAL PATIENT RESULTS</div>
+          <h2 class="section-title" id="trans-title">
+            Witness the Artistry of <span class="gradient-text">Smile Transformation</span>
+          </h2>
+          <p class="section-subtitle">
+            Slide horizontally to reveal the before and after transition. Every smile is mathematically balanced using the Golden Proportion and hand-layered feldspathic porcelain.
+          </p>
+        </header>
+
+        <div class="before-after-wrapper reveal-on-scroll">
+          
+          <!-- Transformation Selector Pills -->
+          <div class="case-tabs" role="tablist" aria-label="Transformation Cases">
+            <button type="button" class="case-tab is-active" data-case="case1" role="tab" aria-selected="true">
+              Case 01: Full Veneer Arch Makeover
+            </button>
+            <button type="button" class="case-tab" data-case="case2" role="tab" aria-selected="false">
+              Case 02: Invisalign &amp; Laser Gum Contouring
+            </button>
+            <button type="button" class="case-tab" data-case="case3" role="tab" aria-selected="false">
+              Case 03: Immediate All-on-4 Implant Restoration
+            </button>
+          </div>
+
+          <!-- The Split Comparison Slider Container -->
+          <div class="comparison-slider" id="smile-slider" role="region" aria-label="Before and after smile comparison slider">
+            
+            <!-- Before Image Layer (Bottom) -->
+            <div class="slider-image-layer slider-image--before">
+              <img src="assets/smile_before.jpg" alt="Macro clinical photograph of real human teeth before cosmetic veneers showing natural diastema, crowding, and discoloration" class="smile-photo">
+              <span class="slider-badge slider-badge--before">BEFORE: DIASTEMA &amp; ENAMEL WEAR</span>
+            </div>
+
+            <!-- After Image Layer (Top with dynamic clip-path width) -->
+            <div class="slider-image-layer slider-image--after" id="after-layer">
+              <img src="assets/smile_after.jpg" alt="Macro clinical photograph of real human teeth after bespoke porcelain veneers showing flawless pearlescent alignment" class="smile-photo">
+              <!-- Pearlescent Shimmer Overlay Line -->
+              <div class="smile-shimmer-sweep" aria-hidden="true"></div>
+              <span class="slider-badge slider-badge--after">AFTER: 8 BESPOKE PORCELAIN VENEERS</span>
+            </div>
+
+            <!-- Draggable Divider Line & Handle -->
+            <div class="slider-divider" id="slider-divider" style="left: 50%;">
+              <div class="slider-handle" role="slider" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" aria-label="Drag slider to compare before and after photos" tabindex="0">
+                <span class="handle-arrow handle-arrow--left">&#9664;</span>
+                <span class="handle-line"></span>
+                <span class="handle-arrow handle-arrow--right">&#9654;</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Case Details Meta Strip -->
+          <div class="case-meta-card">
+            <div class="meta-item">
+              <span class="meta-label">PROCEDURE:</span>
+              <strong class="meta-val" id="case-proc">8 Upper Hand-Layered E-Max Veneers</strong>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">TREATMENT DURATION:</span>
+              <strong class="meta-val" id="case-time">2 Appointments over 5 Days</strong>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">LEAD CLINICIAN:</span>
+              <strong class="meta-val" id="case-doc">Dr. Julian Vance, DDS, FAACD</strong>
+            </div>
+            <div class="meta-item">
+              <a href="#booking" class="btn btn--sm btn--primary">Inquire for this Look</a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TREATMENTS & SERVICES SUITE (3D TILT MAGNETIC CARDS) -->
+    <section class="section treatments-section" id="treatments" aria-labelledby="treat-title">
+      <div class="container">
+        
+        <header class="section-heading text-center reveal-on-scroll">
+          <div class="sub-kicker">&#10024; COUTURE CLINICAL SERVICES</div>
+          <h2 class="section-title" id="treat-title">
+            Engineered for Beauty. Designed for <span class="gradient-text">Absolute Comfort.</span>
+          </h2>
+          <p class="section-subtitle">
+            Hover over any service card to explore our 3D interactive clinic protocols, recovery timelines, and transparent investment pricing.
+          </p>
+        </header>
+
+        <div class="treatments-grid">
+
+          <!-- Card 1: Porcelain Veneers -->
+          <article class="treatment-card tilt-card reveal-on-scroll" data-treatment="veneers">
+            <div class="card-glow" aria-hidden="true"></div>
+            <div class="card-inner">
+              <div class="card-icon-box">
+                <svg viewBox="0 0 32 32" fill="none" class="service-svg" aria-hidden="true">
+                  <path d="M16 4C10 4 7 8 7 14C7 19 9 24 11 28H21C23 24 25 19 25 14C25 8 22 4 16 4Z" stroke="currentColor" stroke-width="2"/>
+                  <path d="M12 12C14 14 18 14 20 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <span class="card-tag">AESTHETIC FLAGSHIP</span>
+              <h3 class="card-title">Porcelain Veneers &amp; Smile Design</h3>
+              <p class="card-desc">
+                Ultra-thin, custom-crafted ceramic laminates designed digitally to match your facial symmetry, lip curvature, and desired shade with zero unnatural bulk.
+              </p>
+              <ul class="card-features">
+                <li><span>&#10003;</span> Minimal preparation &bull; Preserves natural enamel</li>
+                <li><span>&#10003;</span> Stain-resistant high-translucency ceramic</li>
+                <li><span>&#10003;</span> 15-year guarantee with digital mockups</li>
+              </ul>
+              <div class="card-footer">
+                <div class="pricing-badge">
+                  <span class="price-from">From</span>
+                  <span class="price-amount">$1,450</span>
+                  <span class="price-per">/ tooth</span>
+                </div>
+                <button type="button" class="btn-card-select" data-select-treatment="veneers" aria-label="Select Porcelain Veneers in Booking Engine">
+                  Select &rarr;
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 2: Invisalign -->
+          <article class="treatment-card tilt-card reveal-on-scroll" data-treatment="invisalign">
+            <div class="card-glow" aria-hidden="true"></div>
+            <div class="card-inner">
+              <div class="card-icon-box">
+                <svg viewBox="0 0 32 32" fill="none" class="service-svg" aria-hidden="true">
+                  <rect x="6" y="8" width="20" height="16" rx="4" stroke="currentColor" stroke-width="2"/>
+                  <path d="M6 16H26" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2 2"/>
+                  <circle cx="12" cy="12" r="1.5" fill="currentColor"/>
+                  <circle cx="20" cy="20" r="1.5" fill="currentColor"/>
+                </svg>
+              </div>
+              <span class="card-tag">INVISIBLE ALIGNMENT</span>
+              <h3 class="card-title">Invisalign&reg; VIP Diamond Clear Aligners</h3>
+              <p class="card-desc">
+                Digitally sequenced orthodontic trays that discretely shift teeth into perfect alignment without brackets, dietary restrictions, or social inhibition.
+              </p>
+              <ul class="card-features">
+                <li><span>&#10003;</span> iTero&reg; 3D outcome preview in 90 seconds</li>
+                <li><span>&#10003;</span> Accelerated 6 to 12 month average treatment</li>
+                <li><span>&#10003;</span> Includes custom whitening &amp; Vivera&reg; retainers</li>
+              </ul>
+              <div class="card-footer">
+                <div class="pricing-badge">
+                  <span class="price-from">From</span>
+                  <span class="price-amount">$3,800</span>
+                  <span class="price-per">/ full case</span>
+                </div>
+                <button type="button" class="btn-card-select" data-select-treatment="invisalign" aria-label="Select Invisalign in Booking Engine">
+                  Select &rarr;
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 3: 3D Guided Implants -->
+          <article class="treatment-card tilt-card reveal-on-scroll" data-treatment="implants">
+            <div class="card-glow" aria-hidden="true"></div>
+            <div class="card-inner">
+              <div class="card-icon-box">
+                <svg viewBox="0 0 32 32" fill="none" class="service-svg" aria-hidden="true">
+                  <path d="M12 6H20V12H12V6Z" stroke="currentColor" stroke-width="2"/>
+                  <path d="M14 12V24M18 12V24" stroke="currentColor" stroke-width="2"/>
+                  <path d="M12 16H20M13 20H19M14 24H18" stroke="currentColor" stroke-width="2"/>
+                </svg>
+              </div>
+              <span class="card-tag">ROBOTIC PRECISION</span>
+              <h3 class="card-title">Guided 3D Dental Implants &amp; All-on-4</h3>
+              <p class="card-desc">
+                Permanent replacement for single or multiple missing teeth using biocompatible titanium roots and CBCT 3D guided surgical placement for rapid healing.
+              </p>
+              <ul class="card-features">
+                <li><span>&#10003;</span> Flapless micro-incision &bull; Zero swelling</li>
+                <li><span>&#10003;</span> Immediate load provisional teeth on same day</li>
+                <li><span>&#10003;</span> Lifetime osseointegration warranty</li>
+              </ul>
+              <div class="card-footer">
+                <div class="pricing-badge">
+                  <span class="price-from">From</span>
+                  <span class="price-amount">$2,600</span>
+                  <span class="price-per">/ implant</span>
+                </div>
+                <button type="button" class="btn-card-select" data-select-treatment="implants" aria-label="Select Implants in Booking Engine">
+                  Select &rarr;
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 4: Laser Whitening -->
+          <article class="treatment-card tilt-card reveal-on-scroll" data-treatment="whitening">
+            <div class="card-glow" aria-hidden="true"></div>
+            <div class="card-inner">
+              <div class="card-icon-box">
+                <svg viewBox="0 0 32 32" fill="none" class="service-svg" aria-hidden="true">
+                  <circle cx="16" cy="16" r="6" stroke="currentColor" stroke-width="2"/>
+                  <path d="M16 4V8M16 24V28M4 16H8M24 16H28M7.5 7.5L10.5 10.5M21.5 21.5L24.5 24.5M24.5 7.5L21.5 10.5M10.5 21.5L7.5 24.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <span class="card-tag">INSTANT BRIGHTENING</span>
+              <h3 class="card-title">Enamel-Safe Laser Whitening (Blanc Spa)</h3>
+              <p class="card-desc">
+                High-frequency cold laser technology paired with bio-remineralizing hydrogen peroxide. Brightens teeth up to 8 shades in a single 45-minute appointment.
+              </p>
+              <ul class="card-features">
+                <li><span>&#10003;</span> Zero sensitivity guarantee with potassium nitrate</li>
+                <li><span>&#10003;</span> Removes decades of coffee, wine, and tea stains</li>
+                <li><span>&#10003;</span> Includes custom touch-up home pen kit</li>
+              </ul>
+              <div class="card-footer">
+                <div class="pricing-badge">
+                  <span class="price-from">Fixed</span>
+                  <span class="price-amount">$650</span>
+                  <span class="price-per">/ session</span>
+                </div>
+                <button type="button" class="btn-card-select" data-select-treatment="whitening" aria-label="Select Laser Whitening in Booking Engine">
+                  Select &rarr;
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 5: Full Mouth Rehabilitation -->
+          <article class="treatment-card tilt-card reveal-on-scroll" data-treatment="rehab">
+            <div class="card-glow" aria-hidden="true"></div>
+            <div class="card-inner">
+              <div class="card-icon-box">
+                <svg viewBox="0 0 32 32" fill="none" class="service-svg" aria-hidden="true">
+                  <path d="M16 6L26 12V20L16 26L6 20V12L16 6Z" stroke="currentColor" stroke-width="2"/>
+                  <circle cx="16" cy="16" r="4" fill="currentColor"/>
+                </svg>
+              </div>
+              <span class="card-tag">COMPREHENSIVE COUTURE</span>
+              <h3 class="card-title">Full Mouth Neuromuscular Reconstruction</h3>
+              <p class="card-desc">
+                Holistic restoration for severe grinding, bite collapse, TMJ pain, or extensive dental wear. Harmonizes jaw alignment with breathtaking aesthetics.
+              </p>
+              <ul class="card-features">
+                <li><span>&#10003;</span> T-Scan&reg; digital bite pressure balance</li>
+                <li><span>&#10003;</span> Relief from chronic migraines and TMJ pain</li>
+                <li><span>&#10003;</span> Full concierge VIP scheduling &amp; transport</li>
+              </ul>
+              <div class="card-footer">
+                <div class="pricing-badge">
+                  <span class="price-from">Bespoke</span>
+                  <span class="price-amount">Custom</span>
+                  <span class="price-per">/ plan</span>
+                </div>
+                <button type="button" class="btn-card-select" data-select-treatment="rehab" aria-label="Select Full Mouth Rehab in Booking Engine">
+                  Select &rarr;
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 6: Sleep Dentistry & Sedation -->
+          <article class="treatment-card tilt-card reveal-on-scroll" data-treatment="sedation">
+            <div class="card-glow" aria-hidden="true"></div>
+            <div class="card-inner">
+              <div class="card-icon-box">
+                <svg viewBox="0 0 32 32" fill="none" class="service-svg" aria-hidden="true">
+                  <path d="M22 10C20 6 15 4 10 6C6 8 4 13 6 18C8 22 13 24 18 22C14 20 13 15 15 11C16 9 19 8 22 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M22 14L26 18M26 14L22 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <span class="card-tag">ANXIETY-FREE CARE</span>
+              <h3 class="card-title">Sleep Dentistry &amp; Twilight Sedation</h3>
+              <p class="card-desc">
+                For dental-phobic patients or extensive procedures. Sleep calmly under board-certified anesthesiologist supervision and wake up with your smile completed.
+              </p>
+              <ul class="card-features">
+                <li><span>&#10003;</span> IV Twilight sedation or calming oral twilight</li>
+                <li><span>&#10003;</span> Continuous vital sign &amp; ECG monitoring</li>
+                <li><span>&#10003;</span> Zero recollection of noise or procedure</li>
+              </ul>
+              <div class="card-footer">
+                <div class="pricing-badge">
+                  <span class="price-from">Add-on</span>
+                  <span class="price-amount">$550</span>
+                  <span class="price-per">/ session</span>
+                </div>
+                <button type="button" class="btn-card-select" data-select-treatment="sedation" aria-label="Select Sedation in Booking Engine">
+                  Select &rarr;
+                </button>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PAINLESS TECHNOLOGY & 3D INNOVATION STRIP -->
+    <section class="section tech-section" id="technology" aria-labelledby="tech-title">
+      <div class="container">
+        
+        <div class="tech-layout">
+          
+          <div class="tech-content reveal-on-scroll">
+            <div class="sub-kicker">&#128736; MEDICAL INNOVATION</div>
+            <h2 class="section-title" id="tech-title">
+              Painless Dentistry is Not a Promise. It is <span class="gradient-text">Our Science.</span>
+            </h2>
+            <p class="section-subtitle">
+              We replaced needles, toxic drills, and messy impression trays with ultra-quiet photonic lasers, AI intraoral scanners, and VR sensory headsets.
+            </p>
+
+            <div class="tech-accordion">
+              
+              <div class="tech-item is-open">
+                <button type="button" class="tech-header" aria-expanded="true">
+                  <span class="tech-num">01</span>
+                  <span class="tech-name">iTero&reg; Element 5D Optical Scanning</span>
+                  <span class="tech-icon">+</span>
+                </button>
+                <div class="tech-body">
+                  <p>Captures 6,000 optical frames per second without gag-inducing impression putty. Renders your complete teeth and jaw in photorealistic 3D color instantly.</p>
+                </div>
+              </div>
+
+              <div class="tech-item">
+                <button type="button" class="tech-header" aria-expanded="false">
+                  <span class="tech-num">02</span>
+                  <span class="tech-name">Waterlase iPlus&reg; HydroPhotonics</span>
+                  <span class="tech-icon">+</span>
+                </button>
+                <div class="tech-body">
+                  <p>Uses energized water droplets cut by laser energy. Eliminates vibration, friction heat, and need for traditional anesthetic injections in over 85% of cases.</p>
+                </div>
+              </div>
+
+              <div class="tech-item">
+                <button type="button" class="tech-header" aria-expanded="false">
+                  <span class="tech-num">03</span>
+                  <span class="tech-name">CEREC&reg; Primemill In-Clinic Robotics</span>
+                  <span class="tech-icon">+</span>
+                </button>
+                <div class="tech-body">
+                  <p>Our in-house 5-axis diamond milling robot shapes bespoke zirconia and ceramic crowns in 14 minutes, eliminating uncomfortable temporary teeth forever.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Tech Visual Hologram Simulation -->
+          <div class="tech-visual-box reveal-on-scroll">
+            <div class="scanner-card">
+              <div class="scanner-header">
+                <span class="scanner-dot"></span>
+                <span class="scanner-status">iTero&reg; REAL-TIME SCANNING ACTIVE</span>
+                <span class="scanner-fps">60 FPS // 1080P 3D</span>
+              </div>
+              <div class="scanner-display">
+                <!-- Real 3D Intraoral Human Teeth Scan -->
+                <img src="assets/itero_scan.jpg" alt="Clinical 3D intraoral digital color scanner displaying real human dental arch and anatomical teeth" class="scan-photo">
+                <!-- Animated Laser Scanner Beam -->
+                <div class="laser-scanner-line" aria-hidden="true"></div>
+                <div class="scan-metric-badge">
+                  <span>OPTICAL TOLERANCE: <strong>&plusmn; 4.2 &mu;m 3D HD</strong></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SPECIALISTS & CLINICIAN ATELIER -->
+    <section class="section team-section" id="specialists" aria-labelledby="team-title">
+      <div class="container">
+        
+        <header class="section-heading text-center reveal-on-scroll">
+          <div class="sub-kicker">&#127891; WORLD-CLASS ACCREDITATION</div>
+          <h2 class="section-title" id="team-title">
+            The Aesthetic <span class="gradient-text">Master Clinicians</span>
+          </h2>
+          <p class="section-subtitle">
+            Trained at Harvard, UCLA, and Zurich. Our doctors combine clinical surgical mastery with the delicate touch of a sculptor.
+          </p>
+        </header>
+
+        <div class="team-grid">
+          
+          <div class="team-card reveal-on-scroll">
+            <div class="team-avatar-box">
+              <div class="team-avatar-initials">JV</div>
+              <span class="badge-role">FOUNDER &bull; SMILE ARCHITECT</span>
+            </div>
+            <div class="team-content">
+              <h3 class="team-name">Dr. Julian Vance, DDS, FAACD</h3>
+              <span class="team-spec">Cosmetic Dentistry &bull; Veneer Specialist</span>
+              <p class="team-bio">Fellow of the American Academy of Cosmetic Dentistry. Over 18 years sculpting smiles for Hollywood talent and international dignitaries.</p>
+              <div class="team-creds">
+                <span>Harvard School of Dental Medicine</span> &bull; <span>AACD Master Clinician</span>
+              </div>
+              <a href="#booking" class="team-book-link" data-doctor="Dr. Julian Vance">Schedule with Dr. Vance &rarr;</a>
+            </div>
+          </div>
+
+          <div class="team-card reveal-on-scroll">
+            <div class="team-avatar-box">
+              <div class="team-avatar-initials">SL</div>
+              <span class="badge-role">CHIEF ORAL SURGEON</span>
+            </div>
+            <div class="team-content">
+              <h3 class="team-name">Dr. Sophia Lin, DMD, MD</h3>
+              <span class="team-spec">Dual-Board Oral &amp; Maxillofacial Surgeon</span>
+              <p class="team-bio">Specializing in minimally invasive robotic dental implants and regenerative bone graft reconstruction with painless sedation.</p>
+              <div class="team-creds">
+                <span>Columbia University MD/DMD</span> &bull; <span>Zurich Implant Fellow</span>
+              </div>
+              <a href="#booking" class="team-book-link" data-doctor="Dr. Sophia Lin">Schedule with Dr. Lin &rarr;</a>
+            </div>
+          </div>
+
+          <div class="team-card reveal-on-scroll">
+            <div class="team-avatar-box">
+              <div class="team-avatar-initials">MR</div>
+              <span class="badge-role">ORTHODONTIC DIRECTOR</span>
+            </div>
+            <div class="team-content">
+              <h3 class="team-name">Dr. Marcus Ray, MS</h3>
+              <span class="team-spec">Invisalign Diamond Top 1% Provider</span>
+              <p class="team-bio">Pioneer in accelerated aligner kinematics and digital smile harmonization without extractions or traditional headgear.</p>
+              <div class="team-creds">
+                <span>UCLA Orthodontics</span> &bull; <span>Align Faculty Member</span>
+              </div>
+              <a href="#booking" class="team-book-link" data-doctor="Dr. Marcus Ray">Schedule with Dr. Ray &rarr;</a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- INTERACTIVE MULTI-STEP APPOINTMENT BOOKING ENGINE -->
+    <section class="section booking-section" id="booking" aria-labelledby="book-title">
+      <div class="container">
+        
+        <div class="booking-layout">
+          
+          <!-- Booking Sidebar Info -->
+          <div class="booking-sidebar reveal-on-scroll">
+            <div class="sub-kicker">&#128197; CONCIERGE SCHEDULING</div>
+            <h2 class="section-title" id="book-title">
+              Reserve Your <span class="gradient-text">Private Suite</span>
+            </h2>
+            <p class="section-subtitle">
+              Every appointment includes a comprehensive 3D iTero optical scan, digital smile simulation, and a zero-pressure clinical consultation.
+            </p>
+
+            <div class="concierge-perks">
+              <div class="perk-item">
+                <span class="perk-icon">&#128716;</span>
+                <div>
+                  <strong>Private Sensory Suites</strong>
+                  <p>Noise-canceling Bose headphones, heated massage dental chairs, and ceiling Netflix screens.</p>
+                </div>
+              </div>
+              <div class="perk-item">
+                <span class="perk-icon">&#128181;</span>
+                <div>
+                  <strong>Transparent Financing</strong>
+                  <p>0% APR flexible monthly payment plans via CareCredit&reg; and Proceed Finance.</p>
+                </div>
+              </div>
+              <div class="perk-item">
+                <span class="perk-icon">&#128663;</span>
+                <div>
+                  <strong>Valet &amp; VIP Travel</strong>
+                  <p>Complimentary private chauffeur service available for out-of-town surgical clients.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="live-support-pill">
+              <span class="support-dot"></span>
+              <span>Need immediate assistance? Call <strong>(310) 842-8900</strong></span>
+            </div>
+          </div>
+
+          <!-- Wizard Booking Card -->
+          <div class="booking-wizard-card reveal-on-scroll">
+            
+            <!-- Step Indicators -->
+            <div class="wizard-steps" role="tablist" aria-label="Booking Steps">
+              <div class="step-indicator is-active" id="step-ind-1">
+                <span class="step-num">1</span>
+                <span class="step-label">Service</span>
+              </div>
+              <div class="step-connector"></div>
+              <div class="step-indicator" id="step-ind-2">
+                <span class="step-num">2</span>
+                <span class="step-label">Doctor</span>
+              </div>
+              <div class="step-connector"></div>
+              <div class="step-indicator" id="step-ind-3">
+                <span class="step-num">3</span>
+                <span class="step-label">Date &amp; Time</span>
+              </div>
+              <div class="step-connector"></div>
+              <div class="step-indicator" id="step-ind-4">
+                <span class="step-num">4</span>
+                <span class="step-label">Confirm</span>
+              </div>
+            </div>
+
+            <!-- Booking Form -->
+            <form id="appointment-form" class="wizard-form" novalidate>
+              
+              <!-- STEP 1: SERVICE SELECTOR -->
+              <div class="wizard-panel is-active" id="wizard-step-1" role="tabpanel" aria-labelledby="step-ind-1">
+                <h3 class="panel-title">Select Desired Consultation or Treatment</h3>
+                <div class="service-selector-grid">
+                  
+                  <label class="service-opt">
+                    <input type="radio" name="selected_service" value="Porcelain Veneers" data-price="$1,450 / tooth" checked>
+                    <span class="opt-card">
+                      <span class="opt-radio"></span>
+                      <span class="opt-details">
+                        <strong class="opt-name">Porcelain Veneers Design</strong>
+                        <span class="opt-price">From $1,450 / tooth</span>
+                      </span>
+                    </span>
+                  </label>
+
+                  <label class="service-opt">
+                    <input type="radio" name="selected_service" value="Invisalign Aligners" data-price="$3,800 full case">
+                    <span class="opt-card">
+                      <span class="opt-radio"></span>
+                      <span class="opt-details">
+                        <strong class="opt-name">Invisalign&reg; Clear Aligners</strong>
+                        <span class="opt-price">From $3,800 full case</span>
+                      </span>
+                    </span>
+                  </label>
+
+                  <label class="service-opt">
+                    <input type="radio" name="selected_service" value="3D Dental Implant" data-price="$2,600 / implant">
+                    <span class="opt-card">
+                      <span class="opt-radio"></span>
+                      <span class="opt-details">
+                        <strong class="opt-name">Guided Dental Implant</strong>
+                        <span class="opt-price">From $2,600 / implant</span>
+                      </span>
+                    </span>
+                  </label>
+
+                  <label class="service-opt">
+                    <input type="radio" name="selected_service" value="Laser Whitening Spa" data-price="$650 session">
+                    <span class="opt-card">
+                      <span class="opt-radio"></span>
+                      <span class="opt-details">
+                        <strong class="opt-name">Laser Whitening Spa</strong>
+                        <span class="opt-price">$650 flat</span>
+                      </span>
+                    </span>
+                  </label>
+
+                  <label class="service-opt">
+                    <input type="radio" name="selected_service" value="General Aesthetic Exam" data-price="$250 (Complimentary w/ procedure)">
+                    <span class="opt-card">
+                      <span class="opt-radio"></span>
+                      <span class="opt-details">
+                        <strong class="opt-name">New Patient 3D Exam &amp; Scan</strong>
+                        <span class="opt-price">$250 (credited to care)</span>
+                      </span>
+                    </span>
+                  </label>
+
+                </div>
+
+                <div class="panel-footer">
+                  <div class="service-estimate">
+                    Estimated Investment: <strong id="step1-estimate">$1,450 / tooth</strong>
+                  </div>
+                  <button type="button" class="btn btn--primary btn-next" data-next-to="2">
+                    Next: Choose Specialist &rarr;
+                  </button>
+                </div>
+              </div>
+
+              <!-- STEP 2: SPECIALIST SELECTOR -->
+              <div class="wizard-panel" id="wizard-step-2" role="tabpanel" aria-labelledby="step-ind-2">
+                <h3 class="panel-title">Select Your Preferred Master Clinician</h3>
+                <div class="doctor-selector-grid">
+                  
+                  <label class="doctor-opt">
+                    <input type="radio" name="selected_doctor" value="Dr. Julian Vance (Cosmetics)" checked>
+                    <span class="opt-card">
+                      <span class="doc-avatar">JV</span>
+                      <span class="opt-details">
+                        <strong class="opt-name">Dr. Julian Vance, DDS</strong>
+                        <span class="opt-sub">Cosmetic Dentistry &bull; Smile Designer</span>
+                      </span>
+                    </span>
+                  </label>
+
+                  <label class="doctor-opt">
+                    <input type="radio" name="selected_doctor" value="Dr. Sophia Lin (Surgery & Implants)">
+                    <span class="opt-card">
+                      <span class="doc-avatar">SL</span>
+                      <span class="opt-details">
+                        <strong class="opt-name">Dr. Sophia Lin, DMD, MD</strong>
+                        <span class="opt-sub">Oral Surgery &bull; Dental Implants</span>
+                      </span>
+                    </span>
+                  </label>
+
+                  <label class="doctor-opt">
+                    <input type="radio" name="selected_doctor" value="Dr. Marcus Ray (Orthodontics)">
+                    <span class="opt-card">
+                      <span class="doc-avatar">MR</span>
+                      <span class="opt-details">
+                        <strong class="opt-name">Dr. Marcus Ray, MS</strong>
+                        <span class="opt-sub">Orthodontics &bull; Invisalign VIP</span>
+                      </span>
+                    </span>
+                  </label>
+
+                  <label class="doctor-opt">
+                    <input type="radio" name="selected_doctor" value="First Available Senior Specialist">
+                    <span class="opt-card">
+                      <span class="doc-avatar">&#9889;</span>
+                      <span class="opt-details">
+                        <strong class="opt-name">First Available Specialist</strong>
+                        <span class="opt-sub">Fastest availability for urgent bookings</span>
+                      </span>
+                    </span>
+                  </label>
+
+                </div>
+
+                <div class="panel-footer">
+                  <button type="button" class="btn btn--glass btn-prev" data-prev-to="1">&larr; Back</button>
+                  <button type="button" class="btn btn--primary btn-next" data-next-to="3">Next: Select Date &rarr;</button>
+                </div>
+              </div>
+
+              <!-- STEP 3: DATE & TIME SLOT PICKER -->
+              <div class="wizard-panel" id="wizard-step-3" role="tabpanel" aria-labelledby="step-ind-3">
+                <h3 class="panel-title">Choose Preferred Date &amp; Time Slot</h3>
+                
+                <div class="date-picker-row">
+                  <div class="field-item">
+                    <label for="booking-date" class="field-label">Preferred Date</label>
+                    <input type="date" id="booking-date" name="booking_date" class="field-input" required>
+                  </div>
+                </div>
+
+                <div class="time-slots-container">
+                  <span class="slots-heading">Available Priority Suite Slots:</span>
+                  <div class="time-slots-grid">
+                    <label class="time-slot-opt">
+                      <input type="radio" name="selected_time" value="09:00 AM" checked>
+                      <span class="slot-badge">09:00 AM</span>
+                    </label>
+                    <label class="time-slot-opt">
+                      <input type="radio" name="selected_time" value="11:30 AM">
+                      <span class="slot-badge">11:30 AM</span>
+                    </label>
+                    <label class="time-slot-opt">
+                      <input type="radio" name="selected_time" value="02:00 PM">
+                      <span class="slot-badge">02:00 PM</span>
+                    </label>
+                    <label class="time-slot-opt">
+                      <input type="radio" name="selected_time" value="03:45 PM">
+                      <span class="slot-badge slot-badge--prime">03:45 PM (Prime)</span>
+                    </label>
+                    <label class="time-slot-opt">
+                      <input type="radio" name="selected_time" value="05:15 PM">
+                      <span class="slot-badge">05:15 PM</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="panel-footer">
+                  <button type="button" class="btn btn--glass btn-prev" data-prev-to="2">&larr; Back</button>
+                  <button type="button" class="btn btn--primary btn-next" data-next-to="4">Next: Patient Info &rarr;</button>
+                </div>
+              </div>
+
+              <!-- STEP 4: PATIENT CONTACT & FINAL CONFIRMATION -->
+              <div class="wizard-panel" id="wizard-step-4" role="tabpanel" aria-labelledby="step-ind-4">
+                <h3 class="panel-title">Patient Contact &amp; Confirmation</h3>
+
+                <div class="booking-summary-box">
+                  <div class="summary-line">
+                    <span>Selected Service:</span> <strong id="sum-service">Porcelain Veneers</strong>
+                  </div>
+                  <div class="summary-line">
+                    <span>Doctor:</span> <strong id="sum-doctor">Dr. Julian Vance</strong>
+                  </div>
+                  <div class="summary-line">
+                    <span>Appointment Time:</span> <strong id="sum-time">Tomorrow at 09:00 AM</strong>
+                  </div>
+                </div>
+
+                <div class="form-grid-2col">
+                  <div class="field-item">
+                    <label for="patient-name" class="field-label">Full Name *</label>
+                    <input type="text" id="patient-name" name="patient_name" class="field-input" placeholder="e.g. Eleanor Vance" required autocomplete="name">
+                    <span class="field-error-msg" id="err-patient-name">Name is required.</span>
+                  </div>
+
+                  <div class="field-item">
+                    <label for="patient-phone" class="field-label">Mobile Phone (For SMS Reminders) *</label>
+                    <input type="tel" id="patient-phone" name="patient_phone" class="field-input" placeholder="e.g. (310) 555-0199" required autocomplete="tel">
+                    <span class="field-error-msg" id="err-patient-phone">Valid phone number required.</span>
+                  </div>
+                </div>
+
+                <div class="field-item">
+                  <label for="patient-email" class="field-label">Email Address *</label>
+                  <input type="email" id="patient-email" name="patient_email" class="field-input" placeholder="eleanor@example.com" required autocomplete="email">
+                  <span class="field-error-msg" id="err-patient-email">Valid email is required.</span>
+                </div>
+
+                <div class="field-item">
+                  <label for="patient-notes" class="field-label">Special Requests or Dental Anxiety Notes</label>
+                  <textarea id="patient-notes" name="patient_notes" class="field-textarea" rows="2" placeholder="e.g. Mild dental anxiety, interested in twilight sedation or same-day mockups..."></textarea>
+                </div>
+
+                <div class="panel-footer">
+                  <button type="button" class="btn btn--glass btn-prev" data-prev-to="3">&larr; Back</button>
+                  <button type="submit" class="btn btn--primary btn--shimmer" id="btn-submit-booking">
+                    <span>Confirm &amp; Reserve Private Suite</span>
+                    <span class="btn-arrow">&check;</span>
+                  </button>
+                </div>
+
+              </div>
+
+            </form>
+
+            <!-- Success Celebration Modal State -->
+            <div class="booking-success-screen" id="booking-success" hidden>
+              <div class="success-icon-burst">&#10004;</div>
+              <h3 class="success-title">Your Private Suite is Reserved!</h3>
+              <p class="success-desc">
+                Reservation Code: <strong id="res-code">AURA-9842-LA</strong>. A calendar invite, valet directions, and medical history link have been sent to your mobile &amp; email.
+              </p>
+              <div class="success-actions">
+                <button type="button" class="btn btn--primary" id="btn-reset-booking">Book Another Reservation</button>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PATIENT STORIES & REVIEWS CAROUSEL -->
+    <section class="section reviews-section" id="testimonials" aria-labelledby="rev-title">
+      <div class="container">
+        
+        <header class="section-heading text-center reveal-on-scroll">
+          <div class="sub-kicker">&#128172; CELEBRATING REAL CONFIDENCE</div>
+          <h2 class="section-title" id="rev-title">
+            Loved by Over <span class="gradient-text">15,000 Patients</span>
+          </h2>
+          <p class="section-subtitle">
+            Read unedited reviews from corporate executives, actors, brides, and lifelong dental-phobics who found their dream smile at AURA.
+          </p>
+        </header>
+
+        <div class="reviews-grid">
+          
+          <div class="review-card reveal-on-scroll">
+            <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="review-quote">
+              "I had put off fixing my chipped front teeth for 12 years because of traumatic childhood dental visits. Dr. Vance and his sedation team changed my life. Absolutely zero pain, and my veneers look so natural people just think I was born blessed."
+            </p>
+            <div class="review-author">
+              <span class="author-avatar">CL</span>
+              <div>
+                <strong>Claire Laurent</strong>
+                <span>Veneers &bull; Verified Patient</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-card reveal-on-scroll">
+            <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="review-quote">
+              "The 3D scan preview was accurate to the millimeter. Completed my Invisalign in just 7 months and my whitening in 45 minutes. The clinic feels more like a 5-star hotel spa in Beverly Hills than a medical office."
+            </p>
+            <div class="review-author">
+              <span class="author-avatar">DK</span>
+              <div>
+                <strong>David K. Sterling</strong>
+                <span>Invisalign VIP &bull; Tech Founder</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-card reveal-on-scroll">
+            <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="review-quote">
+              "Dr. Lin's 3D guided implant surgery was astonishing. Flapless, no stitches, no black-and-blue swelling. I was back giving keynote presentations two days later. The technology here is 10 years ahead of everywhere else."
+            </p>
+            <div class="review-author">
+              <span class="author-avatar">RG</span>
+              <div>
+                <strong>Rebecca Gomez</strong>
+                <span>Implant Restoration &bull; Architect</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FAQ ACCORDION -->
+    <section class="section faq-section" id="faq" aria-labelledby="faq-title">
+      <div class="container faq-container">
+        
+        <header class="section-heading text-center reveal-on-scroll">
+          <div class="sub-kicker">&#10067; COMMON QUESTIONS</div>
+          <h2 class="section-title" id="faq-title">
+            Everything You Need to Know
+          </h2>
+        </header>
+
+        <div class="faq-list">
+          
+          <div class="faq-item reveal-on-scroll">
+            <button type="button" class="faq-question" aria-expanded="false">
+              <span>Are porcelain veneers reversible, and does it hurt?</span>
+              <span class="faq-toggle-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>At AURA Studio, we specialize in micro-thin feldspathic and E-max&reg; ceramic veneers requiring minimal to zero enamel preparation (0.2mm to 0.3mm). Because we only sculpt micro-fractions of enamel with cold lasers, the procedure is completely painless and preserves the structural vitality of your teeth.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal-on-scroll">
+            <button type="button" class="faq-question" aria-expanded="false">
+              <span>How does twilight sedation work for dental anxiety?</span>
+              <span class="faq-toggle-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Administered by our board-certified MD anesthesiologist, twilight sedation places you in an intensely relaxed, dream-like state. You breathe on your own and remain responsive, but you feel zero pain, hear zero clinical sounds, and will have zero recollection of the procedure once awakened.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal-on-scroll">
+            <button type="button" class="faq-question" aria-expanded="false">
+              <span>Can I preview my new smile before committing?</span>
+              <span class="faq-toggle-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Yes, absolutely! With our 3D Digital Smile Design (DSD) protocol, we fabricate a temporary aesthetic prototype ("test drive smile") directly onto your teeth. You can look in the mirror, smile, take photos with family, and approve every curve before we craft your final porcelain restorations.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal-on-scroll">
+            <button type="button" class="faq-question" aria-expanded="false">
+              <span>Do you accept dental insurance or offer financing?</span>
+              <span class="faq-toggle-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>We work with all PPO insurance providers as an out-of-network concierge atelier and handle full claim filing on your behalf. Additionally, we provide 0% APR financing terms through CareCredit&reg; and Proceed Finance, dividing your investment across 12, 24, or 36 low monthly payments.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- LUXURY FOOTER -->
+  <footer class="studio-footer" id="studio-footer">
+    <div class="container footer-layout">
+      
+      <div class="footer-col footer-col--brand">
+        <div class="brand-titles">
+          <span class="brand-name">AURA</span>
+          <span class="brand-tagline">DENTAL ATELIER &bull; BEVERLY HILLS</span>
+        </div>
+        <p class="footer-bio">
+          Pioneering the intersection of dental art, photonic laser medicine, and luxury spa hospitality. Dedicated to lifelong oral health and timeless smile aesthetics.
+        </p>
+        <div class="footer-awards">
+          <span>AACD Accredited &bull; ADA Member &bull; Beverly Hills Chamber of Commerce</span>
         </div>
       </div>
-    </dialog>
 
-    <!-- KEYBOARD SHORTCUTS REFERENCE DIALOG -->
-    <dialog class="shortcuts-dialog" id="shortcuts-dialog" aria-labelledby="shortcuts-heading">
-      <div class="shortcuts-inner">
-        <div class="shortcuts-header">
-          <h2 class="shortcuts-title" id="shortcuts-heading">Command Center Shortcuts</h2>
-          <button type="button" class="modal-close-btn" id="shortcuts-close-btn" aria-label="Close dialog">✕</button>
+      <div class="footer-col">
+        <h4 class="footer-title">Aesthetic Treatments</h4>
+        <ul class="footer-links">
+          <li><a href="#treatments">Micro-Thin Porcelain Veneers</a></li>
+          <li><a href="#treatments">Invisalign&reg; VIP Clear Aligners</a></li>
+          <li><a href="#treatments">3D Guided Dental Implants</a></li>
+          <li><a href="#treatments">Enamel-Safe Laser Whitening</a></li>
+          <li><a href="#treatments">Same-Day CEREC&reg; Crowns</a></li>
+          <li><a href="#treatments">Full Mouth Smile Makeovers</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-title">Studio Atelier Hours</h4>
+        <div class="footer-hours">
+          <p><strong>Monday &ndash; Thursday:</strong> 8:00 AM &ndash; 6:00 PM</p>
+          <p><strong>Friday:</strong> 8:00 AM &ndash; 5:00 PM</p>
+          <p><strong>Saturday:</strong> VIP Private Bookings Only</p>
+          <p><strong>Sunday:</strong> Emergency Coverage 24/7</p>
         </div>
-        <div class="shortcuts-body">
-          <div class="shortcut-group">
-            <div class="shortcut-group-title">NAVIGATION &amp; FEED</div>
-            <div class="shortcut-row">
-              <span class="shortcut-desc">Next / Previous feed item</span>
-              <span class="shortcut-keys"><kbd class="kbd-pill">J</kbd> / <kbd class="kbd-pill">K</kbd> or <kbd class="kbd-pill">↓</kbd> / <kbd class="kbd-pill">↑</kbd></span>
-            </div>
-            <div class="shortcut-row">
-              <span class="shortcut-desc">Open item details (mobile)</span>
-              <span class="shortcut-keys"><kbd class="kbd-pill">Enter</kbd></span>
-            </div>
-            <div class="shortcut-row">
-              <span class="shortcut-desc">Switch views (Today / Ventures / Contacts)</span>
-              <span class="shortcut-keys"><kbd class="kbd-pill">1</kbd> / <kbd class="kbd-pill">2</kbd> / <kbd class="kbd-pill">3</kbd></span>
-            </div>
-          </div>
-
-          <div class="shortcut-group">
-            <div class="shortcut-group-title">ACTIONS ON SELECTED ITEM</div>
-            <div class="shortcut-row">
-              <span class="shortcut-desc">Toggle complete / open</span>
-              <span class="shortcut-keys"><kbd class="kbd-pill">X</kbd></span>
-            </div>
-            <div class="shortcut-row">
-              <span class="shortcut-desc">Toggle important star</span>
-              <span class="shortcut-keys"><kbd class="kbd-pill">S</kbd></span>
-            </div>
-            <div class="shortcut-row">
-              <span class="shortcut-desc">Quick capture anywhere</span>
-              <span class="shortcut-keys"><kbd class="kbd-pill">⌘K</kbd> or <kbd class="kbd-pill">Ctrl+K</kbd></span>
-            </div>
-            <div class="shortcut-row">
-              <span class="shortcut-desc">Close detail / dismiss modal</span>
-              <span class="shortcut-keys"><kbd class="kbd-pill">Esc</kbd></span>
-            </div>
-          </div>
+        <div class="footer-contact">
+          <p>9400 Wilshire Blvd, Suite 820<br>Beverly Hills, CA 90212</p>
+          <p>Direct Wire: (310) 842-8900</p>
         </div>
       </div>
-    </dialog>
 
-    <!-- NEW CONTACT MODAL -->
-    <dialog class="quick-capture-dialog" id="contact-dialog" aria-labelledby="contact-heading">
-      <form class="capture-inner" id="contact-form" method="dialog">
-        <div class="capture-header">
-          <span class="capture-label" id="contact-heading">Add Key Relationship</span>
-          <button type="button" class="modal-close-btn" id="contact-dialog-close" aria-label="Close modal">✕</button>
-        </div>
-        <div class="form-vertical-flow">
-          <div class="form-field">
-            <label for="contact-name-input" class="form-label">Name / Entity</label>
-            <input type="text" id="contact-name-input" class="form-input" placeholder="e.g. ABC Restaurant" required />
-          </div>
-          <div class="form-field">
-            <label for="contact-person-input" class="form-label">Primary Person &amp; Role</label>
-            <input type="text" id="contact-person-input" class="form-input" placeholder="e.g. David Chen, Managing Partner" />
-          </div>
-          <div class="form-field">
-            <label for="contact-venture-select" class="form-label">Venture</label>
-            <select id="contact-venture-select" class="form-select">
-              <option value="Quniverze">Quniverze</option>
-              <option value="Dropshipping">Dropshipping</option>
-              <option value="General">General Network</option>
-            </select>
-          </div>
-          <div class="form-field">
-            <label for="contact-notes-input" class="form-label">Context / Relationship Note</label>
-            <textarea id="contact-notes-input" class="form-textarea" rows="2" placeholder="Key context, partnership potential, or past notes..."></textarea>
-          </div>
-        </div>
-        <div class="capture-footer">
-          <button type="submit" class="btn-editorial-solid">Save Contact</button>
-          <button type="button" class="btn-editorial" id="contact-cancel-btn">Cancel</button>
-        </div>
-      </form>
-    </dialog>
+    </div>
 
-    <!-- SUBTLE TOAST NOTIFICATION -->
-    <div class="toast" id="app-toast" role="status" aria-live="polite" hidden></div>
+    <div class="container footer-sub">
+      <div class="footer-legal">
+        &copy; <span id="current-year">2026</span> AURA Dental Studio Inc. All rights reserved. | <a href="#privacy">Privacy Policy</a> | <a href="#terms">Terms of Care</a> | <a href="#accessibility">ADA Accessibility</a>
+      </div>
+      <div class="footer-tag">
+        Crafted with algorithmic precision &bull; Zero-Pain Dentistry
+      </div>
+    </div>
+  </footer>
 
-  </div>
+  <!-- CANVAS CONFETTI EFFECT CONTAINER -->
+  <canvas id="confetti-canvas" class="confetti-canvas" aria-hidden="true"></canvas>
 
+  <!-- JavaScript -->
   <script src="script.js"></script>
 </body>
 </html>

@@ -37,9 +37,9 @@ export function PipelineView() {
     });
   }, [leads, typeFilter, assignedFilter]);
 
-  // Total Pipeline Value (active deals: Qualified .. Negotiation)
+  // Total Pipeline Value (active deals: Touched .. Negotiation)
   const activePipelineValue = useMemo(() => {
-    const active = ['Qualified', 'Discovery', 'Proposal', 'Negotiation'];
+    const active = ['Touched', 'Qualified', 'Proposal', 'Negotiation'];
     return filteredLeads
       .filter((l) => active.includes(l.stage))
       .reduce((sum, l) => sum + (l.value || 0), 0);
@@ -241,22 +241,38 @@ export function PipelineView() {
                           </div>
                         )}
 
-                        {/* Value & 1-Click Stage Advance */}
-                        <div className="pt-2 flex items-center justify-between border-t border-[#E5E7EB]">
-                          <span className="text-[12px] font-mono font-semibold text-[#12151C]">
+                        {/* Value & 1-Click Stage Actions */}
+                        <div className="pt-2 flex items-center justify-between border-t border-[#E5E7EB] gap-2">
+                          <span className="text-[12px] font-mono font-semibold text-[#12151C] truncate">
                             {lead.value ? `₹${lead.value.toLocaleString()}` : '—'}
                           </span>
 
                           {!isWon && !isLost && (
-                            <button
-                              type="button"
-                              onClick={() => advanceStage(lead.id)}
-                              className="h-7 px-2.5 rounded bg-[#12151C] hover:bg-[#3B82F6] text-white text-[11px] font-medium transition-colors flex items-center gap-1 shadow-2xs"
-                              title="Advance to next stage"
-                            >
-                              <span>Advance</span>
-                              <ArrowRight className="w-3 h-3" />
-                            </button>
+                            <div className="flex items-center gap-1.5 shrink-0">
+                              <button
+                                type="button"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  setStage(lead.id, 'Lost');
+                                }}
+                                className="h-7 px-2 rounded border border-[#E5E7EB] hover:border-[#12151C]/40 hover:bg-white text-[#12151C]/60 hover:text-[#12151C] text-[11px] font-medium transition-colors active:scale-95"
+                                title="Mark lead as Lost"
+                              >
+                                Lost
+                              </button>
+                              <button
+                                type="button"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  advanceStage(lead.id);
+                                }}
+                                className="h-7 px-2.5 rounded bg-[#12151C] hover:bg-[#3B82F6] text-white text-[11px] font-medium transition-colors flex items-center gap-1 shadow-2xs active:scale-95"
+                                title={stage === 'Negotiation' ? 'Close deal as Won' : `Advance to next stage`}
+                              >
+                                <span>{stage === 'Negotiation' ? 'Win' : 'Advance'}</span>
+                                <ArrowRight className="w-3 h-3" />
+                              </button>
+                            </div>
                           )}
 
                           {isWon && (
@@ -267,9 +283,22 @@ export function PipelineView() {
                           )}
 
                           {isLost && (
-                            <span className="text-[10px] font-mono uppercase text-[#12151C]/40 bg-[#F4F6F9] px-1.5 py-0.5 rounded">
-                              Lost
-                            </span>
+                            <div className="flex items-center gap-1.5 shrink-0">
+                              <span className="text-[10px] font-mono uppercase text-[#12151C]/40 bg-[#F4F6F9] px-1.5 py-0.5 rounded">
+                                Lost
+                              </span>
+                              <button
+                                type="button"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  setStage(lead.id, 'New');
+                                }}
+                                className="h-7 px-2 rounded border border-[#E5E7EB] hover:border-[#12151C] hover:bg-white text-[#12151C] text-[11px] font-medium transition-colors active:scale-95"
+                                title="Restore lead back to New"
+                              >
+                                Reopen
+                              </button>
+                            </div>
                           )}
                         </div>
                       </div>

@@ -18,8 +18,8 @@ export type LeadType = 'Product' | 'Client Work';
 
 export type LeadStage =
   | 'New'
+  | 'Touched'
   | 'Qualified'
-  | 'Discovery'
   | 'Proposal'
   | 'Negotiation'
   | 'Won'
@@ -79,8 +79,8 @@ export type CRMView = 'today' | 'leads' | 'followups' | 'pipeline' | 'clients';
 
 export const PIPELINE_STAGES: LeadStage[] = [
   'New',
+  'Touched',
   'Qualified',
-  'Discovery',
   'Proposal',
   'Negotiation',
   'Won',

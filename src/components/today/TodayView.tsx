@@ -123,14 +123,14 @@ export function TodayView() {
 
   // Active pipeline value
   const activePipelineValue = useMemo(() => {
-    const active = ['Qualified', 'Discovery', 'Proposal', 'Negotiation'];
+    const active = ['Touched', 'Qualified', 'Proposal', 'Negotiation'];
     return scopedLeads
       .filter((l) => active.includes(l.stage))
       .reduce((sum, l) => sum + (l.value || 0), 0);
   }, [scopedLeads]);
 
   const activeDealsCount = useMemo(() => {
-    const active = ['Qualified', 'Discovery', 'Proposal', 'Negotiation'];
+    const active = ['Touched', 'Qualified', 'Proposal', 'Negotiation'];
     return scopedLeads.filter((l) => active.includes(l.stage)).length;
   }, [scopedLeads]);
 

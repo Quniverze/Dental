@@ -659,20 +659,59 @@ export function LeadsView() {
             {/* 3. Pipeline Stage & Reassign Rep - Uniform 32px (h-8) */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
               <div className="space-y-1">
-                <label className="text-[11px] font-mono uppercase tracking-wider text-[#12151C]/50 block">
-                  Pipeline Stage
-                </label>
-                <select
-                  value={activeLead.stage}
-                  onChange={(e) => setStage(activeLead.id, e.target.value as LeadStage)}
-                  className="w-full h-8 px-2 text-[12px] font-medium bg-[#F4F6F9] border border-[#E5E7EB] rounded-md text-[#12151C] focus:outline-none focus:border-[#3B82F6]"
-                >
-                  {PIPELINE_STAGES.map((stg) => (
-                    <option key={stg} value={stg}>
-                      {stg}
-                    </option>
-                  ))}
-                </select>
+                <div className="flex items-center justify-between text-[11px] font-mono uppercase tracking-wider text-[#12151C]/50">
+                  <span>Pipeline Stage</span>
+                  {activeLead.stage !== 'Won' && activeLead.stage !== 'Lost' ? (
+                    <button
+                      type="button"
+                      onClick={() => setStage(activeLead.id, 'Lost')}
+                      className="text-[11px] text-[#12151C]/60 hover:text-[#12151C] hover:underline font-sans font-medium"
+                    >
+                      Mark Lost
+                    </button>
+                  ) : activeLead.stage === 'Lost' ? (
+                    <button
+                      type="button"
+                      onClick={() => setStage(activeLead.id, 'New')}
+                      className="text-[11px] text-[#3B82F6] hover:underline font-sans font-medium"
+                    >
+                      Reopen
+                    </button>
+                  ) : null}
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <select
+                    value={activeLead.stage}
+                    onChange={(e) => setStage(activeLead.id, e.target.value as LeadStage)}
+                    className="flex-1 h-8 px-2 text-[12px] font-medium bg-[#F4F6F9] border border-[#E5E7EB] rounded-md text-[#12151C] focus:outline-none focus:border-[#3B82F6]"
+                  >
+                    {PIPELINE_STAGES.map((stg) => (
+                      <option key={stg} value={stg}>
+                        {stg}
+                      </option>
+                    ))}
+                  </select>
+                  {activeLead.stage !== 'Won' && activeLead.stage !== 'Lost' && (
+                    <button
+                      type="button"
+                      onClick={() => setStage(activeLead.id, 'Lost')}
+                      className="h-8 px-2.5 rounded-md border border-[#E5E7EB] hover:border-[#12151C]/50 hover:bg-[#F4F6F9] text-[#12151C]/70 hover:text-[#12151C] text-[11.5px] font-medium transition-colors shrink-0"
+                      title="Mark lead as Lost"
+                    >
+                      Lost
+                    </button>
+                  )}
+                  {activeLead.stage === 'Lost' && (
+                    <button
+                      type="button"
+                      onClick={() => setStage(activeLead.id, 'New')}
+                      className="h-8 px-2.5 rounded-md border border-[#E5E7EB] hover:border-[#12151C] hover:bg-[#F4F6F9] text-[#12151C] text-[11.5px] font-medium transition-colors shrink-0"
+                      title="Restore lead back to New"
+                    >
+                      Reopen
+                    </button>
+                  )}
+                </div>
               </div>
 
               {isAdmin ? (

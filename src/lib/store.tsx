@@ -115,18 +115,23 @@ function mapRowToLead(row: any): Lead {
     nextActionDue = row.next_follow_up_at.split('T')[0];
   }
 
-  return {
-    id: row.id,
-    business_name: row.business_name || '',
-    contact_name: row.contact_name || '',
-    phone: row.phone || '',
-    city: row.location || '',
-    type: (extra.type || (row.industry === 'Product' ? 'Product' : 'Client Work')) as LeadType,
-    stage: (row.status || 'New') as LeadStage,
-    assigned_to: row.assigned_to || 'Abid',
-    angle: extra.angle || row.observation || '',
-    next_action: extra.next_action || row.description || '',
-    next_action_due: nextActionDue,
+    let mappedStage = (row.status || 'New') as LeadStage;
+    if ((mappedStage as string) === 'Discovery') {
+      mappedStage = 'Touched';
+    }
+
+    return {
+      id: row.id,
+      business_name: row.business_name || '',
+      contact_name: row.contact_name || '',
+      phone: row.phone || '',
+      city: row.location || '',
+      type: (extra.type || (row.industry === 'Product' ? 'Product' : 'Client Work')) as LeadType,
+      stage: mappedStage,
+      assigned_to: row.assigned_to || 'Abid',
+      angle: extra.angle || row.observation || '',
+      next_action: extra.next_action || row.description || '',
+      next_action_due: nextActionDue,
     value: extra.value ? Number(extra.value) : undefined,
     created_at: row.created_at || new Date().toISOString(),
     updated_at: row.updated_at || new Date().toISOString()
@@ -624,15 +629,23 @@ export function CRMProvider({ children }: { children: React.ReactNode }) {
     if (!lead) return;
 
     const oldStage = lead.stage;
+    if (oldStage === stage) return;
     const now = new Date().toISOString();
 
     updateLead(id, { stage });
+
+    const isMarkingLost = stage === 'Lost';
+    const isReopening = oldStage === 'Lost' && stage !== 'Lost';
 
     const act: Activity = {
       id: 'act_' + Date.now(),
       lead_id: id,
       type: 'stage_change',
-      text: `Stage changed from ${oldStage} to ${stage}.`,
+      text: isMarkingLost
+        ? `Lead marked as Lost (from ${oldStage}).`
+        : isReopening
+        ? `Lead reopened and set to ${stage} stage.`
+        : `Stage changed from ${oldStage} to ${stage}.`,
       created_at: now
     };
     setActivities((prev) => [act, ...prev]);
@@ -667,6 +680,10 @@ export function CRMProvider({ children }: { children: React.ReactNode }) {
           await supabase.from('clients').insert(mapClientToRow(newClient));
         });
       }
+    } else if (stage === 'Lost') {
+      showToast(`Lead marked as Lost`);
+    } else if (isReopening) {
+      showToast(`Lead reopened: ${stage}`);
     } else {
       showToast(`Stage updated to ${stage}`);
     }
@@ -676,10 +693,14 @@ export function CRMProvider({ children }: { children: React.ReactNode }) {
     const lead = leads.find((l) => l.id === id);
     if (!lead) return;
 
-    const currentIndex = PIPELINE_STAGES.indexOf(lead.stage);
-    if (currentIndex >= 0 && currentIndex < PIPELINE_STAGES.length - 2) {
-      const nextStage = PIPELINE_STAGES[currentIndex + 1];
-      setStage(id, nextStage);
+    if (lead.stage === 'New') {
+      setStage(id, 'Touched');
+    } else if (lead.stage === 'Touched') {
+      setStage(id, 'Qualified');
+    } else if (lead.stage === 'Qualified') {
+      setStage(id, 'Proposal');
+    } else if (lead.stage === 'Proposal') {
+      setStage(id, 'Negotiation');
     } else if (lead.stage === 'Negotiation') {
       setStage(id, 'Won');
     }

@@ -20,6 +20,7 @@ export function FollowUpsView() {
   const {
     leads,
     logCall,
+    setStage,
     setSelectedLeadId,
     setCurrentView,
     currentUser
@@ -105,6 +106,35 @@ export function FollowUpsView() {
       nextActionText.trim(),
       nextActionDate
     );
+
+    // If lead was New, advance to Touched now that initial contact was made
+    if (callingLead.stage === 'New') {
+      setStage(currentLeadId, 'Touched');
+    }
+
+    if (advanceToNext) {
+      const currentIndex = fullDialQueue.findIndex((l) => l.id === currentLeadId);
+      if (currentIndex >= 0 && currentIndex < fullDialQueue.length - 1) {
+        handleStartCall(fullDialQueue[currentIndex + 1]);
+        return;
+      }
+    }
+
+    setCallingLead(null);
+  };
+
+  const handleMarkLostCall = (advanceToNext: boolean) => {
+    if (!callingLead) return;
+
+    const currentLeadId = callingLead.id;
+    logCall(
+      currentLeadId,
+      outcome === 'Interested' ? 'Not Interested' : outcome,
+      callNotes.trim() ? `Lead dropped/lost. ${callNotes.trim()}` : 'Lead marked as Lost during call.',
+      'Deal closed as Lost',
+      ''
+    );
+    setStage(currentLeadId, 'Lost');
 
     if (advanceToNext) {
       const currentIndex = fullDialQueue.findIndex((l) => l.id === currentLeadId);
@@ -630,29 +660,39 @@ export function FollowUpsView() {
               </div>
 
               {/* Modal Footer Buttons - Uniform 34px */}
-              <div className="pt-3 border-t border-[#E5E7EB] flex items-center justify-end gap-2">
+              <div className="pt-3 border-t border-[#E5E7EB] flex items-center justify-between gap-2">
                 <button
                   type="button"
-                  onClick={() => setCallingLead(null)}
-                  className="h-8.5 px-3.5 text-[12px] border border-[#E5E7EB] rounded-md text-[#12151C]/70 hover:text-[#12151C] transition-colors"
+                  onClick={() => handleMarkLostCall(false)}
+                  className="h-8.5 px-3 rounded-md border border-[#E5E7EB] hover:border-[#12151C]/40 hover:bg-[#F4F6F9] text-[#12151C]/70 hover:text-[#12151C] text-[12px] font-medium transition-colors"
+                  title="Mark lead as Lost and remove from queue"
                 >
-                  Cancel
+                  Mark as Lost
                 </button>
-                <button
-                  type="button"
-                  onClick={() => handleSaveCall(false)}
-                  className="h-8.5 px-4 border border-[#12151C] rounded-md text-[#12151C] text-[12px] font-medium hover:bg-[#F4F6F9] transition-colors"
-                >
-                  Save Call
-                </button>
-                <button
-                  type="button"
-                  onClick={() => handleSaveCall(true)}
-                  className="h-8.5 px-4 bg-[#12151C] rounded-md text-white text-[12px] font-medium hover:bg-[#3B82F6] transition-colors flex items-center gap-1.5 shadow-xs"
-                >
-                  <span>Save &amp; Next</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </button>
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setCallingLead(null)}
+                    className="h-8.5 px-3.5 text-[12px] border border-[#E5E7EB] rounded-md text-[#12151C]/70 hover:text-[#12151C] transition-colors"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleSaveCall(false)}
+                    className="h-8.5 px-4 border border-[#12151C] rounded-md text-[#12151C] text-[12px] font-medium hover:bg-[#F4F6F9] transition-colors"
+                  >
+                    Save Call
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleSaveCall(true)}
+                    className="h-8.5 px-4 bg-[#12151C] rounded-md text-white text-[12px] font-medium hover:bg-[#3B82F6] transition-colors flex items-center gap-1.5 shadow-xs"
+                  >
+                    <span>Save &amp; Next</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
+                </div>
               </div>
             </div>
           </div>
